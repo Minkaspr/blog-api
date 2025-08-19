@@ -1,0 +1,18 @@
+# FastAPI y servidor
+fastapi[all]
+
+# Base de datos
+sqlalchemy
+psycopg2-binary
+
+# Configuración
+python-dotenv
+pydantic-settings
+
+# Migraciones (opcional)
+alembic
+
+# Testing (opcional)
+pytest
+pytest-asyncio
+httpx

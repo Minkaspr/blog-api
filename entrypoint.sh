@@ -1,3 +1,4 @@
+#!/bin/sh
 echo "📦 Aplicando migraciones con Alembic..."
 alembic upgrade head
 

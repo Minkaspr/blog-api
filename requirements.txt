@@ -1,5 +1,6 @@
 # FastAPI y servidor
 fastapi[all]
+uvicorn
 
 # Base de datos
 sqlalchemy
@@ -9,10 +10,14 @@ psycopg2-binary
 python-dotenv
 pydantic-settings
 
-# Migraciones (opcional)
+# Migraciones
 alembic
 
-# Testing (opcional)
+# Seguridad
+passlib[bcrypt]
+python-jose[cryptography]
+
+# Testing
 pytest
 pytest-asyncio
 httpx

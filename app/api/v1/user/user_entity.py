@@ -22,12 +22,13 @@ class User(Base):
   birth_date: Mapped[date | None] = mapped_column(Date, nullable=True)
 
   created_at: Mapped[datetime] = mapped_column(
-    TIMESTAMP(timezone=True), server_default=func.now()
+    TIMESTAMP(timezone=True), server_default=func.now(), nullable=False
   )
   updated_at: Mapped[datetime | None] = mapped_column(
-    TIMESTAMP(timezone=True), onupdate=func.now()
+    TIMESTAMP(timezone=True), onupdate=func.now(), nullable=True
   )
 
+  # Relación UNO-a-muchos
   posts: Mapped[list["Post"]] = relationship(
     "Post", back_populates="user", cascade="all, delete-orphan"
   )

@@ -15,10 +15,16 @@ class Post(Base):
   __tablename__ = "posts"
 
   id: Mapped[UUID] = mapped_column(
-    UUID(as_uuid=True), primary_key=True, default=uuid4
+    UUID(as_uuid=True), 
+    primary_key=True, 
+    default=uuid4,
+    nullable=False
   )
   user_id: Mapped[int] = mapped_column(
-    Integer, ForeignKey("users.id", ondelete="CASCADE"), nullable=False
+    Integer, 
+    ForeignKey("users.id", ondelete="CASCADE"), 
+    nullable=False,
+    index=True
   )
   title: Mapped[str] = mapped_column(String(200), nullable=False)
   content: Mapped[str] = mapped_column(Text, nullable=False)
@@ -26,14 +32,24 @@ class Post(Base):
   rating: Mapped[float | None] = mapped_column(DOUBLE_PRECISION, nullable=True)
   published: Mapped[bool] = mapped_column(Boolean, nullable=False, default=False)
   published_at: Mapped[datetime | None] = mapped_column(
-    TIMESTAMP(timezone=True), nullable=True
+    TIMESTAMP(timezone=True), 
+    nullable=True
   )
   event_date: Mapped[date | None] = mapped_column(Date, nullable=True)
   created_at: Mapped[datetime] = mapped_column(
-    TIMESTAMP(timezone=True), server_default=func.now()
+    TIMESTAMP(timezone=True), 
+    server_default=func.now(),
+    nullable=False
   )
   updated_at: Mapped[datetime | None] = mapped_column(
-    TIMESTAMP(timezone=True), onupdate=func.now()
+    TIMESTAMP(timezone=True), 
+    onupdate=func.now(),
+    nullable=True
   )
 
-  user: Mapped["User"] = relationship("User", back_populates="posts")
+  # Relación MUCHOS-a-uno
+  user: Mapped["User"] = relationship(
+    "User", 
+    back_populates="posts",
+    lazy="select"
+  )

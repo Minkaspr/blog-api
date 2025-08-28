@@ -40,3 +40,19 @@ class UserRs(BaseModel):
   birth_date: Optional[date] = None
   created_at: datetime
   updated_at: Optional[datetime]
+
+class UserWithPostsCountRs(UserRs):
+  posts_count: int = 0
+
+class UserItemRs(BaseModel):
+  id: int
+  name: str
+  email: EmailStr
+  created_at: str
+  posts_count: Optional[int] = 0  # Contador de posts, si se carga la relación
+
+class UsersRs(BaseModel):
+  users: list[UserItemRs]
+  current_page: int
+  total_pages: int
+  total_items: int

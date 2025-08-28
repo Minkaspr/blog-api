@@ -89,7 +89,8 @@ async def health_check():
   """
   return {
     "status": "healthy",
-    "environment": settings.environment
+    "environment": settings.environment,
+    "author": settings.author
   }
 
 # Registro del router principal de la API

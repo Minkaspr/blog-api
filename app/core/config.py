@@ -12,7 +12,8 @@ class Settings(BaseSettings):
   environment: str = "development"  # Entorno: development, staging, production
   debug: bool = True
   host: str = "127.0.0.1"
-  port: int = 8000  
+  port: int = 8000
+  author: str = "Unknown"
 
   # Configuración de la base de datos
   database_url: str = "postgresql://user:password@localhost:5432/blogdb"
@@ -24,7 +25,7 @@ class Settings(BaseSettings):
 
   class Config:
     # Especifica el archivo desde el cual cargar las variables de entorno
-    env_file = ".env.development"
+    env_file = ".env"
     case_sensitive = False
 
 
